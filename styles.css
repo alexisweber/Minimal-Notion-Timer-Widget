@@ -1,0 +1,155 @@
+:root{
+  /* Colors */
+  --bg: #ffffff;
+  --ink: #0a2a5e;         /* dark blue */
+  --trace: #8fd3ff;       /* light blue */
+  --btn: var(--ink);
+  --btnInk: #ffffff;
+
+  /* Sizing (responsive) */
+  --pad: clamp(10px, 2.2vmin, 18px);
+  --ringSize: min(72vmin, 360px);
+  --stroke: clamp(10px, 2.4vmin, 16px);
+  --timeSize: clamp(18px, 5.2vmin, 34px);
+  --pmSize: clamp(18px, 5.4vmin, 36px);
+  --btnSize: clamp(42px, 10vmin, 56px);
+  --iconSize: clamp(18px, 4.8vmin, 26px);
+
+  --shadow: 0 8px 24px rgba(0,0,0,.08);
+}
+
+[data-theme="dark"]{
+  --bg: #0a2a5e;
+  --ink: #ffffff;
+  --btn: #ffffff;
+  --btnInk: #0a2a5e;
+  /* trace stays light blue */
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.wrap{
+  height: 100%;
+  display: grid;
+  place-items: center;
+  padding: var(--pad);
+  box-sizing: border-box;
+}
+
+.card{
+  width: 100%;
+  height: 100%;
+  max-width: 520px;
+  max-height: 520px;
+  display: grid;
+  place-items: center;
+}
+
+.ringArea{
+  width: var(--ringSize);
+  height: var(--ringSize);
+  position: relative;
+  display: grid;
+  place-items: center;
+  user-select: none;
+}
+
+svg{
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,.08));
+}
+
+.centerUI{
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+  place-items: center;
+  padding: calc(var(--pad) * 0.8);
+  box-sizing: border-box;
+}
+
+.pm{
+  font-size: var(--pmSize);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ink);
+  opacity: 0.95;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 12px;
+  transition: transform .08s ease;
+}
+.pm:active{ transform: scale(0.96); }
+
+.time{
+  font-size: var(--timeSize);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  display: flex;
+  gap: 0.2em;
+  align-items: baseline;
+  justify-content: center;
+  padding: 6px 10px;
+  border-radius: 14px;
+  color: var(--ink);
+  background: transparent;
+}
+
+.seg{
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 10px;
+  transition: background .12s ease, color .12s ease;
+}
+.seg.selected{
+  background: color-mix(in srgb, var(--ink) 18%, transparent);
+}
+
+.colon{
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.buttons{
+  margin-top: clamp(12px, 2.2vmin, 18px);
+  display: flex;
+  gap: clamp(10px, 2.2vmin, 14px);
+  justify-content: center;
+  align-items: center;
+}
+
+.btn{
+  width: var(--btnSize);
+  height: var(--btnSize);
+  border-radius: 999px;
+  border: none;
+  background: var(--btn);
+  color: var(--btnInk);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: transform .08s ease, opacity .15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn:active{ transform: scale(0.96); }
+.btn svg{ filter: none; width: var(--iconSize); height: var(--iconSize); }
+
+.hint{
+  margin-top: 10px;
+  font-size: 12px;
+  opacity: 0.7;
+  text-align: center;
+  max-width: 360px;
+  line-height: 1.35;
+}

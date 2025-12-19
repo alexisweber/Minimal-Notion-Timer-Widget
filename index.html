@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Notion Countdown Widget</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body data-theme="light">
+  <div class="wrap">
+    <div class="card">
+      <div class="ringArea">
+        <!-- Ring -->
+        <svg viewBox="0 0 200 200" aria-hidden="true">
+          <!-- background trace ring (light blue) = "elapsed trace behind" -->
+          <circle id="track"
+            cx="100" cy="100" r="80"
+            fill="none"
+            stroke="var(--trace)"
+            stroke-width="var(--stroke)"
+            stroke-linecap="round"
+          />
+          <!-- remaining ring (dark/white) that shrinks as time passes -->
+          <circle id="progress"
+            cx="100" cy="100" r="80"
+            fill="none"
+            stroke="var(--ink)"
+            stroke-width="var(--stroke)"
+            stroke-linecap="round"
+            transform="rotate(-90 100 100)"
+            stroke-dasharray="0 999"
+          />
+        </svg>
+
+        <!-- Center controls -->
+        <div class="centerUI">
+          <div class="pm" id="plus" role="button" aria-label="Add">+</div>
+
+          <div class="time" aria-label="Timer">
+            <span class="seg selected" id="hh">00</span>
+            <span class="colon">:</span>
+            <span class="seg" id="mm">00</span>
+            <span class="colon">:</span>
+            <span class="seg" id="ss">00</span>
+          </div>
+
+          <div class="pm" id="minus" role="button" aria-label="Subtract">−</div>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <!-- Left: Play/Pause/Stop -->
+        <button class="btn" id="btnMain" aria-label="Play/Pause/Stop" title="Play / Pause / Stop">
+          <!-- icon injected by JS -->
+        </button>
+
+        <!-- Middle: Reset -->
+        <button class="btn" id="btnReset" aria-label="Reset" title="Reset">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M6 8a8 8 0 1 1-1.2 9.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M6 8V3M6 8h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <!-- Right: Theme toggle -->
+        <button class="btn" id="btnTheme" aria-label="Theme toggle" title="Theme">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 3v18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M12 3a9 9 0 0 1 0 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="./timer.js"></script>
+</body>
+</html>
