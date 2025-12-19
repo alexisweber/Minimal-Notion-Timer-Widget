@@ -1,22 +1,28 @@
 :root{
-  /* Colors */
+  /* Colors (keep yours) */
   --bg: #ffffff;
-  --ink: #0a2a5e;         /* dark blue */
-  --trace: #8fd3ff;       /* light blue */
+  --ink: #0a2a5e;
+  --trace: #8fd3ff;
   --btn: var(--ink);
   --btnInk: #ffffff;
 
-  /* Sizing (responsive) */
-  --pad: clamp(10px, 2.2vmin, 18px);
-  --ringSize: min(72vmin, 360px);
-  --stroke: clamp(10px, 2.4vmin, 16px);
-  --timeSize: clamp(18px, 5.2vmin, 34px);
-  --pmSize: clamp(18px, 5.4vmin, 36px);
-  --btnSize: clamp(42px, 10vmin, 56px);
-  --iconSize: clamp(18px, 4.8vmin, 26px);
+  /* NEW: scale from the widget container */
+  --pad: clamp(8px, 3cqw, 16px);
+
+  /* Ring fills most of the available space */
+  --ringSize: min(82cqw, 82cqh);
+
+  /* Make stroke/text/buttons scale with container */
+  --stroke: clamp(6px, 3.2cqw, 16px);
+  --timeSize: clamp(12px, 6.4cqw, 34px);
+  --pmSize: clamp(12px, 7cqw, 36px);
+
+  --btnSize: clamp(30px, 12cqw, 56px);
+  --iconSize: clamp(14px, 5.5cqw, 26px);
 
   --shadow: 0 8px 24px rgba(0,0,0,.08);
 }
+
 
 [data-theme="dark"]{
   --bg: #0a2a5e;
@@ -34,6 +40,17 @@ html, body {
   color: var(--ink);
 }
 
+.card{
+  width: 100%;
+  height: 100%;
+  max-width: 520px;
+  aspect-ratio: 1 / 1;
+  max-height: 520px;
+  display: grid;
+  place-items: center;
+  container-type: size;
+}
+
 .wrap{
   height: 100%;
   display: grid;
@@ -42,14 +59,6 @@ html, body {
   box-sizing: border-box;
 }
 
-.card{
-  width: 100%;
-  height: 100%;
-  max-width: 520px;
-  max-height: 520px;
-  display: grid;
-  place-items: center;
-}
 
 .ringArea{
   width: var(--ringSize);
@@ -85,8 +94,9 @@ svg{
   color: var(--ink);
   opacity: 0.95;
   cursor: pointer;
-  padding: 6px 10px;
-  border-radius: 12px;
+  padding: clamp(4px, 1.4cqw, 8px) clamp(6px, 2cqw, 10px);
+  border-radius: clamp(8px, 2.2cqw, 12px);
+
   transition: transform .08s ease;
 }
 .pm:active{ transform: scale(0.96); }
@@ -121,9 +131,9 @@ svg{
 }
 
 .buttons{
-  margin-top: clamp(12px, 2.2vmin, 18px);
+  margin-top: clamp(12px, 2.2cqw, 18px);
   display: flex;
-  gap: clamp(10px, 2.2vmin, 14px);
+  gap: clamp(10px, 2.2cqw, 14px);
   justify-content: center;
   align-items: center;
 }
@@ -144,12 +154,3 @@ svg{
 }
 .btn:active{ transform: scale(0.96); }
 .btn svg{ filter: none; width: var(--iconSize); height: var(--iconSize); }
-
-.hint{
-  margin-top: 10px;
-  font-size: 12px;
-  opacity: 0.7;
-  text-align: center;
-  max-width: 360px;
-  line-height: 1.35;
-}
